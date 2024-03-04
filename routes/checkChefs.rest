@@ -1,0 +1,30 @@
+GET http://localhost:3000/api/chefs/
+
+###
+
+GET http://localhost:3000/api/chefs/65e5e697da03f4451176a715
+
+###
+
+POST http://localhost:3000/api/chefs
+Content-Type: application/json
+
+{
+    "name": "Stam",
+    "image": "Stam",
+    "description": "Stam"
+}
+
+###
+
+PATCH  http://localhost:3000/api/chefs/65e5e697da03f4451176a715
+Content-Type: application/json
+
+{
+    "name": "Stam2",
+    "image": "Stam2"
+}
+
+###
+DELETE http://localhost:3000/api/chefs/65e5e697da03f4451176a715
+
