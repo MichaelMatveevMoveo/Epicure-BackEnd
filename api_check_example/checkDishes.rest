@@ -1,0 +1,37 @@
+GET http://localhost:3000/api/v1/dishes
+
+###
+
+GET http://localhost:3000/api/v1/dishes/65e7076a8149253f8472fe5c
+
+###
+
+POST  http://localhost:3000/api/v1/dishes
+Content-Type: application/json
+
+{
+    "name": "12",
+    "price": 1,
+    "Ingredients": ["Ingredients","sad"],
+    "tags": ["asdasd","adsasdas"],
+    "restaurant": "612345678901234567890123"
+}
+
+
+###
+
+PATCH  http://localhost:3000/api/v1/dishes/65e7076a8149253f8472fe5c
+Content-Type: application/json
+
+{
+    "name": "stam2",
+    "price": 6,
+    "Ingredients": ["Ingredients","sad","sad"],
+    "tags": ["asdasd","adsasdas","sad"],
+    "restaurant": "612345678901234567890123"
+}
+
+
+###
+
+DELETE http://localhost:3000/api/v1/dishes/65e7076a8149253f8472fe5c

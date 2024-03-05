@@ -1,0 +1,33 @@
+
+GET http://localhost:3000/api/v1/chefs/
+
+###
+
+GET http://localhost:3000/api/v1/chefs/65e5d0e10374632965f765fd
+
+###
+
+POST http://localhost:3000/api/v1/chefs
+Content-Type: application/json
+
+{
+    "name": "Stam",
+    "image": "Stam",
+    "description": "Stam",
+    "restaurants": ["65e5d0e10374632965f765fd","65e5d0e20374632965f765ff"]
+}
+
+###
+
+PATCH  http://localhost:3000/api/v1/chefs/65e5d0e10374632965f765fd
+Content-Type: application/json
+
+{
+    "name": "Stam2",
+    "image": "Stam2",
+    "restaurants": ["65e5d0e10374632965f765fd", "65e5d0e20374632965f765ff", "65e6c0fabe9c7b20ef4981e2"]
+}
+
+###
+DELETE http://localhost:3000/api/v1/chefs/65e5d0e10374632965f765fd
+

@@ -1,0 +1,49 @@
+GET http://localhost:3000/api/v1/restaurants
+
+###
+
+GET http://localhost:3000/api/v1/restaurants/65e6c8116bb598f8d7da4cb5
+
+###
+
+POST  http://localhost:3000/api/v1/restaurants
+Content-Type: application/json
+
+{
+    "name": "stam",
+    "image": "asdasdasdas",
+    "chef": "612345678901234567890123",
+    "dishes": ["612345678901234567890123","612345678901234567890123"]
+}
+
+
+###
+
+PATCH  http://localhost:3000/api/v1/restaurants/65e6c8116bb598f8d7da4cb5
+Content-Type: application/json
+
+{
+    "name": "er",
+    "image": "rewq",
+    "chef": "612345678901234567890123",
+    "dishes": ["612345678901234567890123","612345678901234567890123","612345678901234567890123"]
+}
+
+
+
+###
+
+DELETE http://localhost:3000/api/v1/restaurants/65e6c8116bb598f8d7da4cb5
+
+###
+
+
+
+GET http://localhost:3000/api/v1/restaurants/addDish/65e6c8116bb598f8d7da4cb5/65e6c80b6bb598f8d7da4ca7
+
+###
+
+
+
+GET http://localhost:3000/api/v1/restaurants/removeDish/65e6c8116bb598f8d7da4cb5/65e6c8d7da4caf
+###
