@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-PATCH  http://localhost:3000/api/v1/dishes/65e7076a8149253f8472fe5c
+PATCH  http://localhost:3000/api/v1/dishes/65e71b5b2148ad759e155980
 Content-Type: application/json
 
 {
@@ -34,4 +34,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/v1/dishes/65e7076a8149253f8472fe5c
+DELETE http://localhost:3000/api/v1/dishes/65e71b5b2148ad759e155980

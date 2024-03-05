@@ -8,7 +8,7 @@ export async function getDishById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getDishes() {
-  const dishes = await Dish.find();
+  const dishes = await Dish.find({ status: "Active" });
   return dishes;
 }
 
@@ -51,8 +51,17 @@ export async function changeDish(
   const updatedDish = await dish.save();
   return updatedDish;
 }
-
 export async function deleteDishById(id: mongoose.Types.ObjectId) {
+  const dish = await getDishById(id);
+
+  if (dish == null) return null;
+  dish.status = "notActive";
+
+  const updatedDish = await dish.save();
+  return updatedDish;
+}
+
+export async function fullDeleteDishById(id: mongoose.Types.ObjectId) {
   const dish = await getDishById(id);
 
   if (dish == null) return null;

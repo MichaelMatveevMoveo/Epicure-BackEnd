@@ -6,6 +6,7 @@ import {
   getChefById,
   changeChef,
   deleteChefById,
+  fullDeleteChefById,
 } from "../../../handlers/apiHandlers/v1/chefsHandler";
 
 export async function getChefsController(req: Request, res: Response) {
@@ -55,10 +56,24 @@ export async function changeChefController(req: Request, res: Response) {
     return res.status(500).send(error);
   }
 }
-
 export async function deleteChefByIdController(req: Request, res: Response) {
   try {
     const chef = await deleteChefById(
+      new mongoose.Types.ObjectId(req.params.id)
+    );
+    if (chef == null) return res.status(404).send("the chef not found");
+    return res.json(chef);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function fullDeleteChefByIdController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const chef = await fullDeleteChefById(
       new mongoose.Types.ObjectId(req.params.id)
     );
     if (chef == null) return res.status(404).send("the chef not found");

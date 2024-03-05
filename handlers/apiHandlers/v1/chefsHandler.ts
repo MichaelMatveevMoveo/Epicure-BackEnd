@@ -8,7 +8,7 @@ export async function getChefById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getChefs() {
-  const chefs = await Chef.find();
+  const chefs = await Chef.find({ status: "Active" });
   return chefs;
 }
 
@@ -43,8 +43,18 @@ export async function changeChef(
   const updatedChef = await chef.save();
   return updatedChef;
 }
-
 export async function deleteChefById(id: mongoose.Types.ObjectId) {
+  const chef = await getChefById(id);
+
+  if (chef == null) return null;
+
+  chef.status = "notActive";
+
+  const updatedChef = await chef.save();
+  return updatedChef;
+}
+
+export async function fullDeleteChefById(id: mongoose.Types.ObjectId) {
   const chef = await getChefById(id);
 
   if (chef == null) return null;

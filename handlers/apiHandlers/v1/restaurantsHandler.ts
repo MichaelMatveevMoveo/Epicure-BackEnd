@@ -7,7 +7,7 @@ export async function getRestaurantById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getRestaurants() {
-  const restaurants = await Restaurant.find();
+  const restaurants = await Restaurant.find({ status: "Active" });
   return restaurants;
 }
 
@@ -43,8 +43,16 @@ export async function changeRestaurant(
   const updatedRestaurant = await restaurant.save();
   return updatedRestaurant;
 }
-
 export async function deleteRestaurantById(id: mongoose.Types.ObjectId) {
+  const restaurant = await getRestaurantById(id);
+
+  if (restaurant == null) return null;
+  restaurant.status = "notActive";
+  const updatedRestaurant = await restaurant.save();
+  return updatedRestaurant;
+}
+
+export async function fullDeleteRestaurantById(id: mongoose.Types.ObjectId) {
   const restaurant = await getRestaurantById(id);
 
   if (restaurant == null) return null;

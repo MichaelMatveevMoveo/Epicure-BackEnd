@@ -13,6 +13,11 @@ const chefSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    required: true,
+    default: "Active",
+  },
 });
 
 const Chef = mongoose.model("Chef", chefSchema);
