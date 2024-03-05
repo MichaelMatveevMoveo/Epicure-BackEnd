@@ -55,7 +55,7 @@ export async function changeDish(
 export async function deleteDishById(id: mongoose.Types.ObjectId) {
   const dish = await getDishById(id);
 
-  if (!dish) return null;
+  if (dish == null) return null;
 
   await dish.deleteOne({ _id: dish.id });
   return dish;

@@ -13,10 +13,8 @@ const chefSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  restaurants: {
-    type: [mongoose.Schema.Types.ObjectId],
-    required: true,
-  },
 });
 
-module.exports = mongoose.model("Chef", chefSchema);
+const Chef = mongoose.model("Chef", chefSchema);
+
+export default Chef;
