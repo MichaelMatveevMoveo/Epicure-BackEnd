@@ -7,6 +7,7 @@ import {
   getChefByIdController,
   changeChefController,
   deleteChefByIdController,
+  recoverChefByIdController,
 } from "../../../controllers/apiControllers/v1/chefsController";
 
 router.get("/", async (req: Request, res: Response) => {
@@ -23,6 +24,10 @@ router.post("/", async (req: Request, res: Response) => {
 
 router.patch("/:id", async (req: Request, res: Response) => {
   await changeChefController(req, res);
+});
+
+router.get("/recover/:id", async (req: Request, res: Response) => {
+  await recoverChefByIdController(req, res);
 });
 
 router.delete("/:id", async (req: Request, res: Response) => {

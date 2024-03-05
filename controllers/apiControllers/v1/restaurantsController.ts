@@ -5,7 +5,7 @@ import {
   addRestaurant,
   getRestaurantById,
   changeRestaurant,
-  deleteRestaurantById,
+  changeStatus,
   fullDeleteRestaurantById,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
@@ -58,13 +58,31 @@ export async function changeRestaurantController(req: Request, res: Response) {
     return res.status(500).send(error);
   }
 }
+
+export async function recoverRestaurantByIdController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const restaurant = await changeStatus(
+      new mongoose.Types.ObjectId(req.params.id),
+      "Active"
+    );
+    if (restaurant == null) return res.status(404).send("the chef not found");
+    return res.json(restaurant);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
 export async function deleteRestaurantByIdController(
   req: Request,
   res: Response
 ) {
   try {
-    const restaurant = await deleteRestaurantById(
-      new mongoose.Types.ObjectId(req.params.id)
+    const restaurant = await changeStatus(
+      new mongoose.Types.ObjectId(req.params.id),
+      "notActive"
     );
     if (restaurant == null) return res.status(404).send("the chef not found");
     return res.json(restaurant);

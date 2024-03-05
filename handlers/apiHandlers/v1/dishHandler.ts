@@ -51,11 +51,15 @@ export async function changeDish(
   const updatedDish = await dish.save();
   return updatedDish;
 }
-export async function deleteDishById(id: mongoose.Types.ObjectId) {
+
+export async function changeStatus(
+  id: mongoose.Types.ObjectId,
+  status: string
+) {
   const dish = await getDishById(id);
 
   if (dish == null) return null;
-  dish.status = "notActive";
+  dish.status = status;
 
   const updatedDish = await dish.save();
   return updatedDish;

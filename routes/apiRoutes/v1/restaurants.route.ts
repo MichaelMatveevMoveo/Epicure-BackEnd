@@ -6,6 +6,7 @@ import {
   getRestaurantByIdController,
   changeRestaurantController,
   deleteRestaurantByIdController,
+  recoverRestaurantByIdController,
 } from "../../../controllers/apiControllers/v1/restaurantsController";
 
 router.get("/", async (req: Request, res: Response) => {
@@ -22,6 +23,10 @@ router.post("/", async (req: Request, res: Response) => {
 
 router.patch("/:id", async (req: Request, res: Response) => {
   await changeRestaurantController(req, res);
+});
+
+router.get("/recover/:id", async (req: Request, res: Response) => {
+  await recoverRestaurantByIdController(req, res);
 });
 
 router.delete("/:id", async (req: Request, res: Response) => {

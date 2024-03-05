@@ -2,7 +2,7 @@ GET http://localhost:3000/api/v1/dishes
 
 ###
 
-GET http://localhost:3000/api/v1/dishes/65e7076a8149253f8472fe5c
+GET http://localhost:3000/api/v1/dishes/65e71b762148ad759e1559aa
 
 ###
 
@@ -31,7 +31,10 @@ Content-Type: application/json
     "restaurant": "612345678901234567890123"
 }
 
+###
+
+GET http://localhost:3000/api/v1/dishes/recover/65e71b762148ad759e1559aa
 
 ###
 
-DELETE http://localhost:3000/api/v1/dishes/65e71b5b2148ad759e155980
+DELETE http://localhost:3000/api/v1/dishes/65e71b762148ad759e1559aa

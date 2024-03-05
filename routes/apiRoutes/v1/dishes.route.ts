@@ -7,6 +7,7 @@ import {
   getDishByIdController,
   changeDishController,
   deleteDishByIdController,
+  recoverDishByIdController,
 } from "../../../controllers/apiControllers/v1/dishController";
 
 router.get("/", async (req: Request, res: Response) => {
@@ -23,6 +24,10 @@ router.post("/", async (req: Request, res: Response) => {
 
 router.patch("/:id", async (req: Request, res: Response) => {
   await changeDishController(req, res);
+});
+
+router.get("/recover/:id", async (req: Request, res: Response) => {
+  await recoverDishByIdController(req, res);
 });
 
 router.delete("/:id", async (req: Request, res: Response) => {

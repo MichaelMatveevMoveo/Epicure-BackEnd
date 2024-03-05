@@ -43,12 +43,16 @@ export async function changeChef(
   const updatedChef = await chef.save();
   return updatedChef;
 }
-export async function deleteChefById(id: mongoose.Types.ObjectId) {
+
+export async function changeStatus(
+  id: mongoose.Types.ObjectId,
+  status: string
+) {
   const chef = await getChefById(id);
 
   if (chef == null) return null;
 
-  chef.status = "notActive";
+  chef.status = status;
 
   const updatedChef = await chef.save();
   return updatedChef;

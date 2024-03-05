@@ -43,11 +43,14 @@ export async function changeRestaurant(
   const updatedRestaurant = await restaurant.save();
   return updatedRestaurant;
 }
-export async function deleteRestaurantById(id: mongoose.Types.ObjectId) {
+export async function changeStatus(
+  id: mongoose.Types.ObjectId,
+  status: string
+) {
   const restaurant = await getRestaurantById(id);
 
   if (restaurant == null) return null;
-  restaurant.status = "notActive";
+  restaurant.status = status;
   const updatedRestaurant = await restaurant.save();
   return updatedRestaurant;
 }

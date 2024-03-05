@@ -27,11 +27,14 @@ Content-Type: application/json
     "chef": "612345678901234567890123"
 }
 
+###
+
+GET http://localhost:3000/api/v1/restaurants/recover/65e719f5f305aedab87eeab9
 
 
 ###
 
-DELETE http://localhost:3000/api/v1/restaurants/65e71a86f305aedab87eeaed
+DELETE http://localhost:3000/api/v1/restaurants/65e719f5f305aedab87eeab9
 
 ###
 
