@@ -68,3 +68,7 @@ export async function getRestaurantWithDishesById(id: mongoose.Types.ObjectId) {
   const restaurant = await Restaurant.findById(id).populate("dishes");
   return restaurant;
 }
+
+export async function getRestaurantsRejexInName(regex: RegExp) {
+  return await Restaurant.find({ name: regex });
+}

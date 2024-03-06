@@ -8,7 +8,7 @@ import {
   changeDishController,
   deleteDishByIdController,
   recoverDishByIdController,
-} from "../../../controllers/apiControllers/v1/dishController";
+} from "../../../../controllers/apiControllers/v1/dishController";
 
 router.get("/", async (req: Request, res: Response) => {
   await getDishesController(req, res);

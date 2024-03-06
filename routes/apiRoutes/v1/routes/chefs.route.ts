@@ -12,7 +12,7 @@ import {
   getChefWithResturantsController,
   chefWithResturntsAndDishesController,
   allChefsWithResturntsAndDishesController,
-} from "../../../controllers/apiControllers/v1/chefsController";
+} from "../../../../controllers/apiControllers/v1/chefsController";
 
 router.get("/", async (req: Request, res: Response) => {
   await getChefsController(req, res);

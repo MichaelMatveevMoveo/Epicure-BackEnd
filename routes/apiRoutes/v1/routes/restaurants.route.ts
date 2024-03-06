@@ -8,7 +8,7 @@ import {
   deleteRestaurantByIdController,
   recoverRestaurantByIdController,
   getRestaurantWithDishesByIdController,
-} from "../../../controllers/apiControllers/v1/restaurantsController";
+} from "../../../../controllers/apiControllers/v1/restaurantsController";
 
 router.get("/", async (req: Request, res: Response) => {
   await getRestaurantsController(req, res);

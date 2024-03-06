@@ -73,3 +73,7 @@ export async function fullDeleteDishById(id: mongoose.Types.ObjectId) {
   await dish.deleteOne({ _id: dish.id });
   return dish;
 }
+
+export async function getDishesRejexInName(regex: RegExp) {
+  return await Dish.find({ name: regex });
+}

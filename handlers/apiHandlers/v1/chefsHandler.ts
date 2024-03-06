@@ -34,7 +34,8 @@ export async function changeExistChef(chefDetails: {
   image: string;
   description: string;
 }) {
-  return await Chef.findByIdAndUpdate({ _id: chefDetails.id }, chefDetails, {
+  const { id, ...chefRelevantDetails } = chefDetails;
+  return await Chef.findByIdAndUpdate({ _id: id }, chefRelevantDetails, {
     new: true,
   });
 }
@@ -79,3 +80,25 @@ export async function allChefsWithResturntsAndDishes() {
     populate: "dishes",
   });
 }
+
+export async function getChefsRejexInName(regex: RegExp) {
+  return await Chef.find({ name: regex });
+}
+
+// export const x = async (status: string) => {
+//   return Chef.aggregate([
+//     {
+//       $match: {
+//         status,
+//       },
+//     },
+//     {
+//       $lookup: {
+//         from: "restaurants",
+//         localField: "_id",
+//         foreignField: "chef",
+//         as: "restaurants",
+//       },
+//     },
+//   ]);
+// };

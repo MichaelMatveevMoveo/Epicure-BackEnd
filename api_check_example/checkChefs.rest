@@ -18,7 +18,7 @@ Content-Type: application/json
 
 ###
 
-PATCH  http://localhost:3000/api/v1/chefs/65e823913a86ed2f8faa4c61
+PATCH  http://localhost:3000/api/v1/chefs/65e86be4202f0131cfb8751b
 Content-Type: application/json
 
 {
