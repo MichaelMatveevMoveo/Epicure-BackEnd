@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import mongoose from "mongoose";
+
 import {
   getChefs,
   addChef,
@@ -8,6 +8,9 @@ import {
   changeStatus,
   fullDeleteChefById,
   checkChefExist,
+  getChefWithResturants,
+  chefWithResturntsAndDishes,
+  allChefsWithResturntsAndDishes,
 } from "../../../handlers/apiHandlers/v1/chefsHandler";
 
 export async function checkChefExistControler(
@@ -100,6 +103,41 @@ export async function fullDeleteChefByIdController(
     const chef = await fullDeleteChefById(req.params.id);
     // if (chef == null) return res.status(404).send("the chef not found");
     return res.json(chef);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getChefWithResturantsController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const chefWithResturant = await getChefWithResturants(req.params.id);
+    // if (chef == null) return res.status(404).send("the chef not found");
+    return res.json(chefWithResturant);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function chefWithResturntsAndDishesController(
+  req: Request,
+  res: Response
+) {
+  try {
+    res.json(await chefWithResturntsAndDishes(req.params.id));
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function allChefsWithResturntsAndDishesController(
+  req: Request,
+  res: Response
+) {
+  try {
+    res.json(await allChefsWithResturntsAndDishes());
   } catch (error) {
     return res.status(500).send(error);
   }

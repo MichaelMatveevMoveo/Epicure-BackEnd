@@ -20,6 +20,14 @@ const chefSchema = new mongoose.Schema({
   },
 });
 
+chefSchema.virtual("restaurants", {
+  ref: "Restaurant",
+  localField: "_id",
+  foreignField: "chef",
+});
+
+chefSchema.set("toJSON", { virtuals: true });
+
 const Chef = mongoose.model("Chef", chefSchema);
 
 export default Chef;

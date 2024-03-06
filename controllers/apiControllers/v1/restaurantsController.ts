@@ -7,6 +7,7 @@ import {
   changeRestaurant,
   changeStatus,
   fullDeleteRestaurantById,
+  getRestaurantWithDishesById,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
 
@@ -97,6 +98,21 @@ export async function fullDeleteRestaurantByIdController(
 ) {
   try {
     const restaurant = await fullDeleteRestaurantById(
+      new mongoose.Types.ObjectId(req.params.id)
+    );
+    if (restaurant == null) return res.status(404).send("the chef not found");
+    return res.json(restaurant);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getRestaurantWithDishesByIdController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const restaurant = await getRestaurantWithDishesById(
       new mongoose.Types.ObjectId(req.params.id)
     );
     if (restaurant == null) return res.status(404).send("the chef not found");

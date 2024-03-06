@@ -57,3 +57,25 @@ export async function fullDeleteChefById(id: string) {
 
   return chef.deleteOne({ _id: chef.id });
 }
+
+export async function getChefWithResturants(id: string) {
+  const chefWithRestaurant = await Chef.findOne({ _id: id }).populate(
+    "restaurants"
+  );
+  console.log(chefWithRestaurant);
+  return chefWithRestaurant;
+}
+
+export async function chefWithResturntsAndDishes(id: string) {
+  return await Chef.findOne({ _id: id }).populate({
+    path: "restaurants",
+    populate: "dishes",
+  });
+}
+
+export async function allChefsWithResturntsAndDishes() {
+  return await Chef.find().populate({
+    path: "restaurants",
+    populate: "dishes",
+  });
+}

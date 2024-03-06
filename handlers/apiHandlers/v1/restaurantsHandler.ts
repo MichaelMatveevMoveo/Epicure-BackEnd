@@ -63,3 +63,8 @@ export async function fullDeleteRestaurantById(id: mongoose.Types.ObjectId) {
   await restaurant.deleteOne({ _id: restaurant.id });
   return restaurant;
 }
+
+export async function getRestaurantWithDishesById(id: mongoose.Types.ObjectId) {
+  const restaurant = await Restaurant.findById(id).populate("dishes");
+  return restaurant;
+}

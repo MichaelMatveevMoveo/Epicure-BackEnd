@@ -11,6 +11,7 @@ const restaurantSchema = new mongoose.Schema({
   },
   chef: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "Chef",
     required: true,
   },
   status: {
@@ -20,6 +21,14 @@ const restaurantSchema = new mongoose.Schema({
   },
 });
 
-const Restaurant = mongoose.model("restaurantSchema", restaurantSchema);
+restaurantSchema.virtual("dishes", {
+  ref: "Dish",
+  localField: "_id",
+  foreignField: "restaurant",
+});
+
+restaurantSchema.set("toJSON", { virtuals: true });
+
+const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
 export default Restaurant;

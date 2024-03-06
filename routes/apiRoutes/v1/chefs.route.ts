@@ -9,6 +9,9 @@ import {
   deleteChefByIdController,
   recoverChefByIdController,
   checkChefExistControler,
+  getChefWithResturantsController,
+  chefWithResturntsAndDishesController,
+  allChefsWithResturntsAndDishesController,
 } from "../../../controllers/apiControllers/v1/chefsController";
 
 router.get("/", async (req: Request, res: Response) => {
@@ -50,5 +53,26 @@ router.delete(
     await deleteChefByIdController(req, res);
   }
 );
+
+router.get(
+  "/chefWithResturnts/:id",
+  checkChefExistControler,
+  async (req: Request, res: Response) => {
+    await getChefWithResturantsController(req, res);
+  }
+);
+
+router.get(
+  "/chefWithResturntsAndDishes/:id",
+  checkChefExistControler,
+  async (req: Request, res: Response) => {
+    await chefWithResturntsAndDishesController(req, res);
+  }
+);
+
+router.get("/all/chefWithRestAndDish", async (req: Request, res: Response) => {
+  console.log("stam");
+  await allChefsWithResturntsAndDishesController(req, res);
+});
 
 module.exports = router;
