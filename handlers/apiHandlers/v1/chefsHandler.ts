@@ -2,14 +2,17 @@ import mongoose from "mongoose";
 
 import Chef from "../../../mongoDB/models/chef";
 
-export async function getChefById(id: mongoose.Types.ObjectId) {
+export async function checkChefExist(id: string) {
+  return await Chef.exists({ _id: id });
+}
+
+export async function getChefById(id: string) {
   const chef = await Chef.findById(id);
   return chef;
 }
 
 export async function getChefs() {
-  const chefs = await Chef.find({ status: "Active" });
-  return chefs;
+  return await Chef.find({ status: "Active" });
 }
 
 export async function addChef(
@@ -22,32 +25,21 @@ export async function addChef(
     image: image,
     description: description,
   });
-  const newChef = await chef.save();
-  return newChef;
+  return await chef.save();
 }
 
-export async function changeChef(
-  id: mongoose.Types.ObjectId,
-  name: string,
-  image: string,
-  description: string
-) {
-  const chef = await getChefById(id);
-
-  if (chef == null) return null;
-
-  chef.name = name;
-  chef.image = image;
-  chef.description = description;
-
-  const updatedChef = await chef.save();
-  return updatedChef;
+export async function changeExistChef(chefDetails: {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+}) {
+  return await Chef.findByIdAndUpdate({ _id: chefDetails.id }, chefDetails, {
+    new: true,
+  });
 }
 
-export async function changeStatus(
-  id: mongoose.Types.ObjectId,
-  status: string
-) {
+export async function changeStatus(id: string, status: string) {
   const chef = await getChefById(id);
 
   if (chef == null) return null;
@@ -58,11 +50,10 @@ export async function changeStatus(
   return updatedChef;
 }
 
-export async function fullDeleteChefById(id: mongoose.Types.ObjectId) {
+export async function fullDeleteChefById(id: string) {
   const chef = await getChefById(id);
 
-  if (chef == null) return null;
+  if (!chef) return null;
 
-  await chef.deleteOne({ _id: chef.id });
-  return chef;
+  return chef.deleteOne({ _id: chef.id });
 }

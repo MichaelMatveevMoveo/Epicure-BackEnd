@@ -3,7 +3,7 @@ GET http://localhost:3000/api/v1/chefs/
 
 ###
 
-GET http://localhost:3000/api/v1/chefs/65e71c0347c3df5030428a0e
+GET http://localhost:3000/api/v1/chefs/65e8254edd14cbdf1f02f816
 
 ###
 
@@ -18,7 +18,7 @@ Content-Type: application/json
 
 ###
 
-PATCH  http://localhost:3000/api/v1/chefs/65e71c0447c3df5030428a10
+PATCH  http://localhost:3000/api/v1/chefs/65e823913a86ed2f8faa4c61
 Content-Type: application/json
 
 {
