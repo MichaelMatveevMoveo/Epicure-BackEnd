@@ -85,20 +85,96 @@ export async function getChefsRejexInName(regex: RegExp) {
   return await Chef.find({ name: regex });
 }
 
-// export const x = async (status: string) => {
-//   return Chef.aggregate([
-//     {
-//       $match: {
-//         status,
-//       },
-//     },
-//     {
-//       $lookup: {
-//         from: "restaurants",
-//         localField: "_id",
-//         foreignField: "chef",
-//         as: "restaurants",
-//       },
-//     },
-//   ]);
-// };
+export async function getChefWithResturantsAgr(id: string) {
+  return await Chef.aggregate([
+    {
+      $match: {
+        status: "Active",
+      },
+    },
+    {
+      $match: {
+        _id: new mongoose.Types.ObjectId(id),
+      },
+    },
+    {
+      $lookup: {
+        from: "restaurants",
+        localField: "_id",
+        foreignField: "chef",
+        as: "restaurants",
+      },
+    },
+  ]);
+}
+
+export async function chefWithResturntsAndDishesAgr(id: string) {
+  return await Chef.aggregate([
+    {
+      $match: {
+        status: "Active",
+      },
+    },
+    {
+      $match: {
+        _id: new mongoose.Types.ObjectId(id),
+      },
+    },
+    {
+      $lookup: {
+        from: "restaurants",
+        localField: "_id",
+        pipeline: [
+          {
+            $match: {
+              status: "Active",
+            },
+          },
+          {
+            $lookup: {
+              from: "dishes",
+              localField: "_id",
+              foreignField: "restaurant",
+              as: "dishes",
+            },
+          },
+        ],
+        foreignField: "chef",
+        as: "restaurants",
+      },
+    },
+  ]);
+}
+
+export async function allChefsWithResturntsAndDishesAgr() {
+  return await Chef.aggregate([
+    {
+      $match: {
+        status: "Active",
+      },
+    },
+    {
+      $lookup: {
+        from: "restaurants",
+        localField: "_id",
+        pipeline: [
+          {
+            $match: {
+              status: "Active",
+            },
+          },
+          {
+            $lookup: {
+              from: "dishes",
+              localField: "_id",
+              foreignField: "restaurant",
+              as: "dishes",
+            },
+          },
+        ],
+        foreignField: "chef",
+        as: "restaurants",
+      },
+    },
+  ]);
+}

@@ -9,8 +9,11 @@ import {
   fullDeleteChefById,
   checkChefExist,
   getChefWithResturants,
+  getChefWithResturantsAgr,
   chefWithResturntsAndDishes,
+  chefWithResturntsAndDishesAgr,
   allChefsWithResturntsAndDishes,
+  allChefsWithResturntsAndDishesAgr,
 } from "../../../handlers/apiHandlers/v1/chefsHandler";
 
 export async function checkChefExistControler(
@@ -113,8 +116,8 @@ export async function getChefWithResturantsController(
   res: Response
 ) {
   try {
-    const chefWithResturant = await getChefWithResturants(req.params.id);
-    // if (chef == null) return res.status(404).send("the chef not found");
+    const chefWithResturant = await getChefWithResturantsAgr(req.params.id);
+    // const chefWithResturant = await getChefWithResturants(req.params.id);
     return res.json(chefWithResturant);
   } catch (error) {
     return res.status(500).send(error);
@@ -126,7 +129,8 @@ export async function chefWithResturntsAndDishesController(
   res: Response
 ) {
   try {
-    res.json(await chefWithResturntsAndDishes(req.params.id));
+    res.json(await chefWithResturntsAndDishesAgr(req.params.id));
+    // res.json(await chefWithResturntsAndDishes(req.params.id));
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -137,7 +141,8 @@ export async function allChefsWithResturntsAndDishesController(
   res: Response
 ) {
   try {
-    res.json(await allChefsWithResturntsAndDishes());
+    res.json(await allChefsWithResturntsAndDishesAgr());
+    // res.json(await allChefsWithResturntsAndDishes());
   } catch (error) {
     return res.status(500).send(error);
   }
