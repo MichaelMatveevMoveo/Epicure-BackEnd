@@ -99,7 +99,7 @@ router.post("/", async (req: Request, res: Response) => {
  *   patch:
  *     tags:
  *       - Dish
- *     summary: change exist dish using chef id
+ *     summary: change exist dish using dish id
  *     parameters:
  *       - name: id
  *         in: path
