@@ -37,7 +37,7 @@ import mongoose from "mongoose";
  *      properties:
  *        name:
  *          type: string
- *          default: yossi
+ *          default: res1
  *        image:
  *          type: string
  *          default: imageurl

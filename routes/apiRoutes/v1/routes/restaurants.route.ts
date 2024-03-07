@@ -10,6 +10,26 @@ import {
   getRestaurantWithDishesByIdController,
 } from "../../../../controllers/apiControllers/v1/restaurantsController";
 
+/**
+ * @openapi
+ * /api/v1/restaurants:
+ *  get:
+ *    tags:
+ *      - Restaurant
+ *    description: Get all the restaurants from the database
+ *    responses:
+ *      200:
+ *        description: All the Restaurants with data
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/restaurantSchemaOutPut'
+ *      500:
+ *        description: Failed to process the query
+ */
+
 router.get("/", async (req: Request, res: Response) => {
   await getRestaurantsController(req, res);
 });
