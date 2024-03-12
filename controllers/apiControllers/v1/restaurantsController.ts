@@ -67,7 +67,7 @@ export async function recoverRestaurantByIdController(
   try {
     const restaurant = await changeStatus(
       new mongoose.Types.ObjectId(req.params.id),
-      "Active"
+      true
     );
     if (restaurant == null) return res.status(404).send("the chef not found");
     return res.json(restaurant);
@@ -83,7 +83,7 @@ export async function deleteRestaurantByIdController(
   try {
     const restaurant = await changeStatus(
       new mongoose.Types.ObjectId(req.params.id),
-      "notActive"
+      false
     );
     if (restaurant == null) return res.status(404).send("the chef not found");
     return res.json(restaurant);

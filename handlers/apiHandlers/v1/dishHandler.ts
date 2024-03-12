@@ -8,13 +8,14 @@ export async function getDishById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getDishes() {
-  const dishes = await Dish.find({ status: "Active" });
+  const dishes = await Dish.find({ status: true });
   return dishes;
 }
 
 export async function addDish(
   name: string,
   price: number,
+  image: string,
   Ingredients: [string],
   tags: [string],
   restaurant: mongoose.Types.ObjectId
@@ -22,6 +23,7 @@ export async function addDish(
   const dish = new Dish({
     name: name,
     price: price,
+    image: image,
     Ingredients: Ingredients,
     tags: tags,
     restaurant: restaurant,
@@ -34,6 +36,7 @@ export async function changeDish(
   id: mongoose.Types.ObjectId,
   name: string,
   price: number,
+  image: string,
   Ingredients: [string],
   tags: [string],
   restaurant: mongoose.Types.ObjectId
@@ -44,6 +47,7 @@ export async function changeDish(
 
   dish.name = name;
   dish.price = price;
+  dish.image = image;
   dish.Ingredients = Ingredients;
   dish.tags = tags;
   dish.restaurant = restaurant;
@@ -54,7 +58,7 @@ export async function changeDish(
 
 export async function changeStatus(
   id: mongoose.Types.ObjectId,
-  status: string
+  status: boolean
 ) {
   const dish = await getDishById(id);
 

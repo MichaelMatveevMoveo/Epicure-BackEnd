@@ -48,8 +48,8 @@ import mongoose from "mongoose";
  *          type: string
  *          default: 65e9b3dcb63431b6e2e418a2
  *        status:
- *          type: string
- *          default: Active/noActive
+ *          type: Boolean
+ *          default: true
  *        restaurants:
  *          type: array
  *          items:
@@ -70,9 +70,9 @@ const chefSchema = new mongoose.Schema({
     required: true,
   },
   status: {
-    type: String,
+    type: Boolean,
     required: true,
-    default: "Active",
+    default: true,
   },
 });
 

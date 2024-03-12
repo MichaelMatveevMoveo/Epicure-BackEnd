@@ -12,7 +12,7 @@ export async function getChefById(id: string) {
 }
 
 export async function getChefs() {
-  return await Chef.find({ status: "Active" });
+  return await Chef.find({ status: true });
 }
 
 export async function addChef(
@@ -40,7 +40,7 @@ export async function changeExistChef(chefDetails: {
   });
 }
 
-export async function changeStatus(id: string, status: string) {
+export async function changeStatus(id: string, status: boolean) {
   const chef = await getChefById(id);
 
   if (chef == null) return null;
@@ -89,7 +89,7 @@ export async function getChefWithResturantsAgr(id: string) {
   return await Chef.aggregate([
     {
       $match: {
-        status: "Active",
+        status: true,
       },
     },
     {
@@ -112,7 +112,7 @@ export async function chefWithResturntsAndDishesAgr(id: string) {
   return await Chef.aggregate([
     {
       $match: {
-        status: "Active",
+        status: true,
       },
     },
     {
@@ -127,7 +127,7 @@ export async function chefWithResturntsAndDishesAgr(id: string) {
         pipeline: [
           {
             $match: {
-              status: "Active",
+              status: true,
             },
           },
           {
@@ -150,7 +150,7 @@ export async function allChefsWithResturntsAndDishesAgr() {
   return await Chef.aggregate([
     {
       $match: {
-        status: "Active",
+        status: true,
       },
     },
     {
@@ -160,7 +160,7 @@ export async function allChefsWithResturntsAndDishesAgr() {
         pipeline: [
           {
             $match: {
-              status: "Active",
+              status: true,
             },
           },
           {

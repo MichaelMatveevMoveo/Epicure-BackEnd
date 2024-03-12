@@ -16,21 +16,6 @@ import {
   allChefsWithResturntsAndDishesAgr,
 } from "../../../handlers/apiHandlers/v1/chefsHandler";
 
-export async function checkChefExistControler(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    if (!(await checkChefExist(req.params.id))) {
-      return res.status(404).send("the chef not found");
-    }
-    next();
-  } catch (error) {
-    return res.status(500).send(error);
-  }
-}
-
 export async function getChefsController(req: Request, res: Response) {
   try {
     const chefs = await getChefs();
@@ -80,7 +65,7 @@ export async function changeChefController(req: Request, res: Response) {
 }
 export async function recoverChefByIdController(req: Request, res: Response) {
   try {
-    const chef = await changeStatus(req.params.id, "Active");
+    const chef = await changeStatus(req.params.id, true);
     if (chef == null) return res.status(404).send("the chef not found");
     return res.json(chef);
   } catch (error) {
@@ -90,7 +75,7 @@ export async function recoverChefByIdController(req: Request, res: Response) {
 
 export async function deleteChefByIdController(req: Request, res: Response) {
   try {
-    const chef = await changeStatus(req.params.id, "notActive");
+    const chef = await changeStatus(req.params.id, false);
     // if (chef == null) return res.status(404).send("the chef not found");
     return res.json(chef);
   } catch (error) {

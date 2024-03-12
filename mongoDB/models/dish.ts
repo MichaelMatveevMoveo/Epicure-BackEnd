@@ -8,6 +8,7 @@ import mongoose from "mongoose";
  *      required:
  *        - name
  *        - price
+ *        - image
  *        - Ingredients
  *        - tags
  *        - restaurant
@@ -18,6 +19,9 @@ import mongoose from "mongoose";
  *        price:
  *          type: number
  *          default: 5
+ *        image:
+ *          type: string
+ *          default: img 1
  *        Ingredients:
  *          type: array
  *          items:
@@ -47,6 +51,7 @@ import mongoose from "mongoose";
  *        - id
  *        - name
  *        - price
+ *        - image
  *        - Ingredients
  *        - tags
  *        - restaurant
@@ -58,6 +63,9 @@ import mongoose from "mongoose";
  *        price:
  *          type: number
  *          default: 5
+ *        image:
+ *          type: string
+ *          default: img 1
  *        Ingredients:
  *          type: array
  *          items:
@@ -80,8 +88,8 @@ import mongoose from "mongoose";
  *          type: string
  *          default: 65e9b3dcb63431b6e2e418a2
  *        status:
- *          type: string
- *          default: Active/noActive
+ *          type: Boolean
+ *          default: true
  */
 
 const dishSchema = new mongoose.Schema({
@@ -91,6 +99,10 @@ const dishSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
+    required: true,
+  },
+  image: {
+    type: String,
     required: true,
   },
   Ingredients: {
@@ -107,9 +119,9 @@ const dishSchema = new mongoose.Schema({
     required: true,
   },
   status: {
-    type: String,
+    type: Boolean,
     required: true,
-    default: "Active",
+    default: true,
   },
 });
 

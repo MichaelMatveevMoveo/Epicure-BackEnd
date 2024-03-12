@@ -7,7 +7,7 @@ export async function getRestaurantById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getRestaurants() {
-  const restaurants = await Restaurant.find({ status: "Active" });
+  const restaurants = await Restaurant.find({ status: true });
   return restaurants;
 }
 
@@ -45,7 +45,7 @@ export async function changeRestaurant(
 }
 export async function changeStatus(
   id: mongoose.Types.ObjectId,
-  status: string
+  status: boolean
 ) {
   const restaurant = await getRestaurantById(id);
 

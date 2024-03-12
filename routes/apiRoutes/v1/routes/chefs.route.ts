@@ -8,12 +8,12 @@ import {
   changeChefController,
   deleteChefByIdController,
   recoverChefByIdController,
-  checkChefExistControler,
   getChefWithResturantsController,
   chefWithResturntsAndDishesController,
   allChefsWithResturntsAndDishesController,
 } from "../../../../controllers/apiControllers/v1/chefsController";
 
+import { middlewareCheckChefExistControler } from "../../../../middlewares/middleware";
 /**
  * @openapi
  * /api/v1/chefs:
@@ -67,7 +67,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get(
   "/:id",
-  checkChefExistControler,
+  middlewareCheckChefExistControler,
   async (req: Request, res: Response) => {
     await getChefByIdController(req, res);
   }
@@ -135,7 +135,7 @@ router.post("/", async (req: Request, res: Response) => {
 
 router.patch(
   "/:id",
-  checkChefExistControler,
+  middlewareCheckChefExistControler,
   async (req: Request, res: Response) => {
     await changeChefController(req, res);
   }
@@ -169,7 +169,7 @@ router.patch(
  */
 router.get(
   "/recover/:id",
-  checkChefExistControler,
+  middlewareCheckChefExistControler,
   async (req: Request, res: Response) => {
     await recoverChefByIdController(req, res);
   }
@@ -204,7 +204,7 @@ router.get(
 
 router.delete(
   "/:id",
-  checkChefExistControler,
+  middlewareCheckChefExistControler,
   async (req: Request, res: Response) => {
     await deleteChefByIdController(req, res);
   }
@@ -239,7 +239,7 @@ router.delete(
 
 router.get(
   "/chefWithResturnts/:id",
-  checkChefExistControler,
+  middlewareCheckChefExistControler,
   async (req: Request, res: Response) => {
     await getChefWithResturantsController(req, res);
   }
@@ -274,7 +274,7 @@ router.get(
 
 router.get(
   "/chefWithResturntsAndDishes/:id",
-  checkChefExistControler,
+  middlewareCheckChefExistControler,
   async (req: Request, res: Response) => {
     await chefWithResturntsAndDishesController(req, res);
   }

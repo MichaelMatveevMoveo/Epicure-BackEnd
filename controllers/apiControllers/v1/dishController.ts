@@ -33,6 +33,7 @@ export async function addDishController(req: Request, res: Response) {
     const dish = await addDish(
       req.body.name,
       parseInt(req.body.price),
+      req.body.image,
       req.body.Ingredients,
       req.body.tags,
       req.body.restaurant
@@ -50,6 +51,7 @@ export async function changeDishController(req: Request, res: Response) {
       new mongoose.Types.ObjectId(req.params.id),
       req.body.name,
       parseInt(req.body.price),
+      req.body.image,
       req.body.Ingredients,
       req.body.tags,
       req.body.restaurant
@@ -65,7 +67,7 @@ export async function recoverDishByIdController(req: Request, res: Response) {
   try {
     const dish = await changeStatus(
       new mongoose.Types.ObjectId(req.params.id),
-      "Active"
+      true
     );
     if (dish == null) return res.status(404).send("the chef not found");
     return res.json(dish);
@@ -78,7 +80,7 @@ export async function deleteDishByIdController(req: Request, res: Response) {
   try {
     const dish = await changeStatus(
       new mongoose.Types.ObjectId(req.params.id),
-      "notActive"
+      false
     );
     if (dish == null) return res.status(404).send("the chef not found");
     return res.json(dish);
