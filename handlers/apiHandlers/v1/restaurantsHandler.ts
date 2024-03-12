@@ -13,11 +13,13 @@ export async function getRestaurants() {
 
 export async function addRestaurant(
   name: string,
+  stars: number,
   image: string,
   chef: mongoose.Types.ObjectId
 ) {
   const restaurant = new Restaurant({
     name: name,
+    stars: stars,
     image: image,
     chef: chef,
   });
@@ -29,6 +31,7 @@ export async function addRestaurant(
 export async function changeRestaurant(
   id: mongoose.Types.ObjectId,
   name: string,
+  stars: number,
   image: string,
   chef: mongoose.Types.ObjectId
 ) {
@@ -37,6 +40,7 @@ export async function changeRestaurant(
   if (restaurant == null) return null;
 
   restaurant.name = name;
+  restaurant.stars = stars;
   restaurant.image = image;
   restaurant.chef = chef;
 

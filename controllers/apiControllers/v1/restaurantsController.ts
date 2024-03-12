@@ -36,6 +36,7 @@ export async function addRestaurantController(req: Request, res: Response) {
   try {
     const restaurant = await addRestaurant(
       req.body.name,
+      req.body.stars,
       req.body.image,
       req.body.chef
     );
@@ -50,6 +51,7 @@ export async function changeRestaurantController(req: Request, res: Response) {
     const restaurant = await changeRestaurant(
       new mongoose.Types.ObjectId(req.params.id),
       req.body.name,
+      req.body.stars,
       req.body.image,
       req.body.chef
     );

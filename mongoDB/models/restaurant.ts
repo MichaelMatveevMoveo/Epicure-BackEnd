@@ -8,12 +8,16 @@ import mongoose from "mongoose";
  *      type: object
  *      required:
  *        - name
+ *        - stars
  *        - image
  *        - chef
  *      properties:
  *        name:
  *          type: string
  *          default: res1
+ *        stars:
+ *          type: number
+ *          default: 0
  *        image:
  *          type: string
  *          default: imageurl
@@ -31,6 +35,7 @@ import mongoose from "mongoose";
  *      required:
  *        - id
  *        - name
+ *        - stars
  *        - image
  *        - chef
  *        - status
@@ -38,6 +43,9 @@ import mongoose from "mongoose";
  *        name:
  *          type: string
  *          default: res1
+ *        stars:
+ *          type: number
+ *          default: 0
  *        image:
  *          type: string
  *          default: imageurl
@@ -60,6 +68,11 @@ const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+  },
+  stars: {
+    type: Number,
+    required: true,
+    default: 0,
   },
   image: {
     type: String,
