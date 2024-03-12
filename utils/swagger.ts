@@ -2,7 +2,7 @@ import { Express, Request, Response } from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 2000;
 
 const options: swaggerJsdoc.Options = {
   definition: {
