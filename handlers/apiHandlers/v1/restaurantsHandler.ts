@@ -119,3 +119,30 @@ export async function getpopularRestaurantsNameAndChef() {
     },
   ]);
 }
+
+export async function getSignatureDishAll() {
+  return await Restaurant.aggregate([
+    {
+      $match: {
+        signatureDishId: {
+          $ne: null,
+        },
+      },
+    },
+    {
+      $lookup: {
+        from: "dishes",
+        localField: "signatureDishId",
+        foreignField: "_id",
+        as: "dishes",
+      },
+    },
+    {
+      $replaceRoot: {
+        newRoot: {
+          $arrayElemAt: ["$dishes", 0],
+        },
+      },
+    },
+  ]);
+}

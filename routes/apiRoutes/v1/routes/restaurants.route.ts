@@ -11,6 +11,7 @@ import {
   getRestaurantForChefByHisIdController,
   getpopularRestaurantsController,
   getpopularRestaurantsNameAndChefController,
+  getSignatureDishAllController,
 } from "../../../../controllers/apiControllers/v1/restaurantsController";
 
 /**
@@ -243,4 +244,8 @@ router.get(
     await getpopularRestaurantsNameAndChefController(req, res);
   }
 );
+
+router.get("/getSignatureDish/all", async (req: Request, res: Response) => {
+  await getSignatureDishAllController(req, res);
+});
 module.exports = router;

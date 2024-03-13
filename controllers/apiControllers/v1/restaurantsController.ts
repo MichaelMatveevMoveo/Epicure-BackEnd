@@ -11,6 +11,7 @@ import {
   getRestaurantForChefByHisId,
   getpopularRestaurants,
   getpopularRestaurantsNameAndChef,
+  getSignatureDishAll,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
 
@@ -159,6 +160,17 @@ export async function getpopularRestaurantsNameAndChefController(
 ) {
   try {
     return res.json(await getpopularRestaurantsNameAndChef());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getSignatureDishAllController(
+  req: Request,
+  res: Response
+) {
+  try {
+    return res.json(await getSignatureDishAll());
   } catch (error) {
     return res.status(500).send(error);
   }
