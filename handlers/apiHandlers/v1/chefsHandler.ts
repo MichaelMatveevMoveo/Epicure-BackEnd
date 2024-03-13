@@ -180,8 +180,8 @@ export async function allChefsWithResturntsAndDishesAgr() {
 }
 
 export async function setChefOfWeek(chefId: string) {
-  await Chef.updateMany({ isCeffOfWeek: false });
-  return Chef.findOneAndUpdate(
+  await Chef.findOneAndUpdate({ isCeffOfWeek: true }, { isCeffOfWeek: false });
+  return await Chef.findOneAndUpdate(
     { _id: new mongoose.Types.ObjectId(chefId) },
     { isCeffOfWeek: true },
     { new: true }

@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { PipelineStage } from "mongoose";
 import Restaurant from "../../../mongoDB/models/restaurant";
+import { getAllPopularRestWithTheChefName } from "../../../aggregations/resturant.aggregation";
 
 export async function getRestaurantById(id: mongoose.Types.ObjectId) {
   const restaurant = await Restaurant.findById(id);
@@ -89,26 +90,7 @@ export async function getpopularRestaurants() {
 
 export async function getpopularRestaurantsNameAndChef() {
   return await Restaurant.aggregate([
-    {
-      $match: {
-        isPopular: true,
-      },
-    },
-    {
-      $lookup: {
-        from: "chefs",
-        localField: "chef",
-        foreignField: "_id",
-        as: "chef",
-      },
-    },
-    {
-      $addFields: {
-        chef: {
-          $arrayElemAt: ["$chef.name", 0],
-        },
-      },
-    },
+    ...getAllPopularRestWithTheChefName(),
     {
       $project: {
         name: 1,
