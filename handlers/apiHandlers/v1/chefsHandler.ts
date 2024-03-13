@@ -189,5 +189,5 @@ export async function setChefOfWeek(chefId: string) {
 }
 
 export async function getChefOfWeek() {
-  return await Chef.find({ isCeffOfWeek: true });
+  return await Chef.findOne({ isCeffOfWeek: true });
 }
