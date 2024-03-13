@@ -4,33 +4,7 @@ import mongoose from "mongoose";
  * @openapi
  * components:
  *  schemas:
- *    restaurantSchemaInPut:
- *      type: object
- *      required:
- *        - name
- *        - stars
- *        - image
- *        - chef
- *      properties:
- *        name:
- *          type: string
- *          default: res1
- *        stars:
- *          type: number
- *          default: 0
- *        image:
- *          type: string
- *          default: imageurl
- *        chef:
- *          type: string
- *          default: 65e9b3dcb63431b6e2e418a2
- */
-
-/**
- * @openapi
- * components:
- *  schemas:
- *    restaurantSchemaOutPut:
+ *    restaurantSchema:
  *      type: object
  *      required:
  *        - id
@@ -38,7 +12,9 @@ import mongoose from "mongoose";
  *        - stars
  *        - image
  *        - chef
- *        - status
+ *        - isActive
+ *        - isPopular
+ *        - signatureDishId
  *      properties:
  *        name:
  *          type: string
@@ -55,13 +31,16 @@ import mongoose from "mongoose";
  *        id:
  *          type: string
  *          default: 65e9b3dcb63431b6e2e418a2
- *        status:
+ *        isActive:
  *          type: Boolean
  *          default: true
- *        dishes:
- *          type: array
- *          items:
- *            $ref: '#/components/schemas/dishSchemaOutPut'
+ *        isPopular:
+ *          type: Boolean
+ *          default: false
+ *        signatureDishId:
+ *          type: string
+ *          nullable: true
+ *          default: 65e9b3dcb63431b6e2e418a2
  */
 
 const restaurantSchema = new mongoose.Schema({
@@ -110,3 +89,58 @@ restaurantSchema.set("toJSON", { virtuals: true });
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
 export default Restaurant;
+
+/**
+ * @openapi
+ * definitions:
+ *   CreatUpdateRestaurant:
+ *     type: object
+ *     required:
+ *        - name
+ *        - stars
+ *        - image
+ *        - chef
+ *     properties:
+ *        name:
+ *          type: string
+ *          default: res1
+ *        stars:
+ *          type: number
+ *          default: 0
+ *        image:
+ *          type: string
+ *          default: imageurl
+ *        chef:
+ *          type: string
+ *          default: 65e9b3dcb63431b6e2e418a2
+ */
+
+/**
+ * @openapi
+ * definitions:
+ *   restaurantsWithDishes:
+ *     type: object
+ *     required:
+ *        - name
+ *        - stars
+ *        - image
+ *        - chef
+ *        - dishes
+ *     properties:
+ *        name:
+ *          type: string
+ *          default: res1
+ *        stars:
+ *          type: number
+ *          default: 0
+ *        image:
+ *          type: string
+ *          default: imageurl
+ *        chef:
+ *          type: string
+ *          default: 65e9b3dcb63431b6e2e418a2
+ *        dishes:
+ *          type: array
+ *          items:
+ *            $ref: '#/components/schemas/dishSchema'
+ */

@@ -25,7 +25,7 @@ import {
  *            schema:
  *              type: array
  *              items:
- *                $ref: '#/components/schemas/dishSchemaOutPut'
+ *                $ref: '#/components/schemas/dishSchema'
  *      500:
  *        description: Failed to process the query
  */
@@ -54,7 +54,7 @@ router.get("/", async (req: Request, res: Response) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/dishSchemaOutPut'
+ *              $ref: '#/components/schemas/dishSchema'
  *       400:
  *         description: dish not found
  *       500:
@@ -77,14 +77,14 @@ router.get("/:id", async (req: Request, res: Response) => {
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/dishSchemaInPut'
+ *            $ref: '#/definitions/CreatUpdateDish'
  *    responses:
  *      200:
  *        description: Success
  *        content:
  *         application/json:
  *          schema:
- *            $ref: '#/components/schemas/dishSchemaOutPut'
+ *            $ref: '#/components/schemas/dishSchema'
  *      500:
  *        description: fail to insert
  */
@@ -112,14 +112,14 @@ router.post("/", async (req: Request, res: Response) => {
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/dishSchemaInPut'
+ *              $ref: '#/definitions/CreatUpdateDish'
  *     responses:
  *       200:
  *         description: dish found
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/dishSchemaOutPut'
+ *              $ref: '#/components/schemas/dishSchema'
  *       404:
  *         description: dish not found
  *       500:
@@ -150,7 +150,7 @@ router.patch("/:id", async (req: Request, res: Response) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/dishSchemaOutPut'
+ *              $ref: '#/components/schemas/dishSchema'
  *       404:
  *         description: dish not found
  *       500:
@@ -181,7 +181,7 @@ router.get("/recover/:id", async (req: Request, res: Response) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/dishSchemaOutPut'
+ *              $ref: '#/components/schemas/dishSchema'
  *       404:
  *         description: dish not found
  *       500:

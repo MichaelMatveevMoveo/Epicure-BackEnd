@@ -1,51 +1,10 @@
 import mongoose from "mongoose";
-/**
- * @openapi
- * components:
- *  schemas:
- *    dishSchemaInPut:
- *      type: object
- *      required:
- *        - name
- *        - price
- *        - image
- *        - Ingredients
- *        - tags
- *        - restaurant
- *      properties:
- *        name:
- *          type: string
- *          default: dish 1
- *        price:
- *          type: number
- *          default: 5
- *        image:
- *          type: string
- *          default: img 1
- *        Ingredients:
- *          type: array
- *          items:
- *            type: string
- *          default:
- *            - ingredient1
- *            - ingredient2
- *        tags:
- *          type: array
- *          items:
- *            type: string
- *          default:
- *            - tag1
- *            - tag2
- *        restaurant:
- *          type: string
- *          default: 65e9b3dcb63431b6e2e418a2
- */
 
 /**
  * @openapi
  * components:
  *  schemas:
- *    dishSchemaOutPut:
+ *    dishSchema:
  *      type: object
  *      required:
  *        - id
@@ -55,7 +14,7 @@ import mongoose from "mongoose";
  *        - Ingredients
  *        - tags
  *        - restaurant
- *        - status
+ *        - isActive
  *      properties:
  *        name:
  *          type: string
@@ -87,7 +46,7 @@ import mongoose from "mongoose";
  *        id:
  *          type: string
  *          default: 65e9b3dcb63431b6e2e418a2
- *        status:
+ *        isActive:
  *          type: Boolean
  *          default: true
  */
@@ -127,3 +86,44 @@ const dishSchema = new mongoose.Schema({
 
 const Dish = mongoose.model("Dish", dishSchema);
 export default Dish;
+
+/**
+ * @openapi
+ * definitions:
+ *   CreatUpdateDish:
+ *     type: object
+ *     required:
+ *        - name
+ *        - price
+ *        - image
+ *        - Ingredients
+ *        - tags
+ *        - restaurant
+ *     properties:
+ *        name:
+ *          type: string
+ *          default: dish 1
+ *        price:
+ *          type: number
+ *          default: 5
+ *        image:
+ *          type: string
+ *          default: img 1
+ *        Ingredients:
+ *          type: array
+ *          items:
+ *            type: string
+ *          default:
+ *            - ingredient1
+ *            - ingredient2
+ *        tags:
+ *          type: array
+ *          items:
+ *            type: string
+ *          default:
+ *            - tag1
+ *            - tag2
+ *        restaurant:
+ *          type: string
+ *          default: 65e9b3dcb63431b6e2e418a2
+ */

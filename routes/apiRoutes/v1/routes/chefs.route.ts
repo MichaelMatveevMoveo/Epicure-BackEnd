@@ -31,7 +31,7 @@ import { middlewareCheckChefExistControler } from "../../../../middlewares/middl
  *            schema:
  *              type: array
  *              items:
- *                $ref: '#/components/schemas/chefSchemaOutPut'
+ *                $ref: '#/components/schemas/chefSchema'
  *      500:
  *        description: Failed to process the query
  */
@@ -60,7 +60,7 @@ router.get("/", async (req: Request, res: Response) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaOutPut'
+ *              $ref: '#/components/schemas/chefSchema'
  *       400:
  *         description: Chef not found
  *       500:
@@ -87,14 +87,14 @@ router.get(
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/chefSchemaInPut'
+ *            $ref: '#/definitions/CreatUpdateChef'
  *    responses:
  *      200:
  *        description: Success
  *        content:
  *         application/json:
  *          schema:
- *            $ref: '#/components/schemas/chefSchemaOutPut'
+ *            $ref: '#/components/schemas/chefSchema'
  *      500:
  *        description: fail to insert
  */
@@ -121,14 +121,14 @@ router.post("/", async (req: Request, res: Response) => {
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaInPut'
+ *              $ref: '#/definitions/CreatUpdateChef'
  *     responses:
  *       200:
  *         description: Chef found
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaOutPut'
+ *              $ref: '#/components/schemas/chefSchema'
  *       404:
  *         description: Chef not found
  *       500:
@@ -163,7 +163,7 @@ router.patch(
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaOutPut'
+ *              $ref: '#/components/schemas/chefSchema'
  *       404:
  *         description: Chef not found
  *       500:
@@ -197,7 +197,7 @@ router.get(
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaOutPut'
+ *              $ref: '#/components/schemas/chefSchema'
  *       404:
  *         description: Chef not found
  *       500:
@@ -232,7 +232,7 @@ router.delete(
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaOutPut'
+ *              $ref: '#/definitions/chefWithRestaurants'
  *       400:
  *         description: Chef not found
  *       500:
@@ -267,7 +267,7 @@ router.get(
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/chefSchemaOutPut'
+ *              $ref: '#/definitions/chefWithRestaurantsWithDishes'
  *       400:
  *         description: Chef not found
  *       500:
@@ -297,7 +297,7 @@ router.get(
  *            schema:
  *              type: array
  *              items:
- *                $ref: '#/components/schemas/chefSchemaOutPut'
+ *                $ref: '#/definitions/chefWithRestaurantsWithDishes'
  *       400:
  *         description: Chef not found
  *       500:
@@ -309,6 +309,33 @@ router.get("/all/chefWithRestAndDish", async (req: Request, res: Response) => {
   await allChefsWithResturntsAndDishesController(req, res);
 });
 
+/**
+ * @openapi
+ * /api/v1/chefs/set/ChefOfWeek/{id}:
+ *   get:
+ *     tags:
+ *       - Chef
+ *     summary: set the chef as chef of the week
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: The ID of the chef
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Chef found
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/chefSchema'
+ *       400:
+ *         description: Chef not found
+ *       500:
+ *         description: Failed to process the query
+ */
+
 router.get(
   "/set/ChefOfWeek/:id",
   middlewareCheckChefExistControler,
@@ -316,6 +343,26 @@ router.get(
     await setChefOfWeekController(req, res);
   }
 );
+
+/**
+ * @openapi
+ * /api/v1/chefs/get/chefOfWeek:
+ *   get:
+ *     tags:
+ *       - Chef
+ *     summary: Get the chef of the week
+ *     responses:
+ *       200:
+ *         description: Chef found
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/chefSchema'
+ *       400:
+ *         description: Chef not found
+ *       500:
+ *         description: Failed to process the query
+ */
 
 router.get("/get/chefOfWeek", async (req: Request, res: Response) => {
   await getChefOfWeekController(req, res);
