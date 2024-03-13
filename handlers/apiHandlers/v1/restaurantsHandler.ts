@@ -82,3 +82,39 @@ export async function getRestaurantForChefByHisId(
 ) {
   return await Restaurant.find({ chef: chefId }).select("name _id image");
 }
+
+export async function getpopularRestaurants() {
+  return await Restaurant.find({ isPopular: true });
+}
+
+export async function getpopularRestaurantsNameAndChef() {
+  return await Restaurant.aggregate([
+    {
+      $match: {
+        isPopular: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "chefs",
+        localField: "chef",
+        foreignField: "_id",
+        as: "chef",
+      },
+    },
+    {
+      $addFields: {
+        chef: {
+          $arrayElemAt: ["$chef.name", 0],
+        },
+      },
+    },
+    {
+      $project: {
+        name: 1,
+        image: 1,
+        chef: 1,
+      },
+    },
+  ]);
+}

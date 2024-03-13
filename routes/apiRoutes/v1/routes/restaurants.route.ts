@@ -9,6 +9,8 @@ import {
   recoverRestaurantByIdController,
   getRestaurantWithDishesByIdController,
   getRestaurantForChefByHisIdController,
+  getpopularRestaurantsController,
+  getpopularRestaurantsNameAndChefController,
 } from "../../../../controllers/apiControllers/v1/restaurantsController";
 
 /**
@@ -228,6 +230,17 @@ router.get(
   "/restaurantsForChef/:chefId",
   async (req: Request, res: Response) => {
     await getRestaurantForChefByHisIdController(req, res);
+  }
+);
+
+router.get("/popular/returants", async (req: Request, res: Response) => {
+  await getpopularRestaurantsController(req, res);
+});
+
+router.get(
+  "/popular/returants/nameImageAndChef",
+  async (req: Request, res: Response) => {
+    await getpopularRestaurantsNameAndChefController(req, res);
   }
 );
 module.exports = router;

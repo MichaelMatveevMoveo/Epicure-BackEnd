@@ -9,6 +9,8 @@ import {
   fullDeleteRestaurantById,
   getRestaurantWithDishesById,
   getRestaurantForChefByHisId,
+  getpopularRestaurants,
+  getpopularRestaurantsNameAndChef,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
 
@@ -135,6 +137,28 @@ export async function getRestaurantForChefByHisIdController(
         new mongoose.Types.ObjectId(req.params.chefId)
       )
     );
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getpopularRestaurantsController(
+  req: Request,
+  res: Response
+) {
+  try {
+    return res.json(await getpopularRestaurants());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getpopularRestaurantsNameAndChefController(
+  req: Request,
+  res: Response
+) {
+  try {
+    return res.json(await getpopularRestaurantsNameAndChef());
   } catch (error) {
     return res.status(500).send(error);
   }
