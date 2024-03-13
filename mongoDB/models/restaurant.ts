@@ -83,10 +83,19 @@ const restaurantSchema = new mongoose.Schema({
     ref: "Chef",
     required: true,
   },
-  status: {
+  isActive: {
     type: Boolean,
     required: true,
     default: true,
+  },
+  isPopular: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  signatureDishId: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: null,
   },
 });
 

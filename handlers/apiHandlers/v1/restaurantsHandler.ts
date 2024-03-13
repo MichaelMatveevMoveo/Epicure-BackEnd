@@ -7,7 +7,7 @@ export async function getRestaurantById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getRestaurants() {
-  const restaurants = await Restaurant.find({ status: true });
+  const restaurants = await Restaurant.find({ isActive: true });
   return restaurants;
 }
 
@@ -49,12 +49,12 @@ export async function changeRestaurant(
 }
 export async function changeStatus(
   id: mongoose.Types.ObjectId,
-  status: boolean
+  isActive: boolean
 ) {
   const restaurant = await getRestaurantById(id);
 
   if (restaurant == null) return null;
-  restaurant.status = status;
+  restaurant.isActive = isActive;
   const updatedRestaurant = await restaurant.save();
   return updatedRestaurant;
 }
@@ -75,4 +75,10 @@ export async function getRestaurantWithDishesById(id: mongoose.Types.ObjectId) {
 
 export async function getRestaurantsRejexInName(regex: RegExp) {
   return await Restaurant.find({ name: regex });
+}
+
+export async function getRestaurantForChefByHisId(
+  chefId: mongoose.Types.ObjectId
+) {
+  return await Restaurant.find({ chef: chefId }).select("name _id image");
 }

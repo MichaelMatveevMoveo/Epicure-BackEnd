@@ -118,7 +118,7 @@ const dishSchema = new mongoose.Schema({
     ref: "Restaurant",
     required: true,
   },
-  status: {
+  isActive: {
     type: Boolean,
     required: true,
     default: true,

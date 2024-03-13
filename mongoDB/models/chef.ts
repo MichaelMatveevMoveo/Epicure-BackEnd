@@ -69,10 +69,15 @@ const chefSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: {
+  isActive: {
     type: Boolean,
     required: true,
     default: true,
+  },
+  isCeffOfWeek: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
 });
 

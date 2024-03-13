@@ -8,7 +8,7 @@ export async function getDishById(id: mongoose.Types.ObjectId) {
 }
 
 export async function getDishes() {
-  const dishes = await Dish.find({ status: true });
+  const dishes = await Dish.find({ isActive: true });
   return dishes;
 }
 
@@ -58,12 +58,12 @@ export async function changeDish(
 
 export async function changeStatus(
   id: mongoose.Types.ObjectId,
-  status: boolean
+  isActive: boolean
 ) {
   const dish = await getDishById(id);
 
   if (dish == null) return null;
-  dish.status = status;
+  dish.isActive = isActive;
 
   const updatedDish = await dish.save();
   return updatedDish;
