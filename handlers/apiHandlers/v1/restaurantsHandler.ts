@@ -114,6 +114,7 @@ export async function getpopularRestaurantsNameAndChef() {
         name: 1,
         image: 1,
         chef: 1,
+        stars: 1,
       },
     },
   ]);

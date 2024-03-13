@@ -238,7 +238,7 @@ router.get("/popular/returants", async (req: Request, res: Response) => {
 });
 
 router.get(
-  "/popular/returants/nameImageAndChef",
+  "/popular/returants/resAndChefName",
   async (req: Request, res: Response) => {
     await getpopularRestaurantsNameAndChefController(req, res);
   }
