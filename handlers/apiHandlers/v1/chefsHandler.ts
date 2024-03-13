@@ -178,3 +178,16 @@ export async function allChefsWithResturntsAndDishesAgr() {
     },
   ]);
 }
+
+export async function setChefOfWeek(chefId: string) {
+  await Chef.updateMany({ isCeffOfWeek: false });
+  return Chef.findOneAndUpdate(
+    { _id: new mongoose.Types.ObjectId(chefId) },
+    { isCeffOfWeek: true },
+    { new: true }
+  );
+}
+
+export async function getChefOfWeek() {
+  return await Chef.find({ isCeffOfWeek: true });
+}

@@ -14,6 +14,8 @@ import {
   chefWithResturntsAndDishesAgr,
   allChefsWithResturntsAndDishes,
   allChefsWithResturntsAndDishesAgr,
+  setChefOfWeek,
+  getChefOfWeek,
 } from "../../../handlers/apiHandlers/v1/chefsHandler";
 
 export async function getChefsController(req: Request, res: Response) {
@@ -128,6 +130,22 @@ export async function allChefsWithResturntsAndDishesController(
   try {
     res.json(await allChefsWithResturntsAndDishesAgr());
     // res.json(await allChefsWithResturntsAndDishes());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function setChefOfWeekController(req: Request, res: Response) {
+  try {
+    res.json(await setChefOfWeek(req.params.id));
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getChefOfWeekController(req: Request, res: Response) {
+  try {
+    res.json(await getChefOfWeek());
   } catch (error) {
     return res.status(500).send(error);
   }

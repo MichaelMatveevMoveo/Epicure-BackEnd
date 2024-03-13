@@ -11,6 +11,8 @@ import {
   getChefWithResturantsController,
   chefWithResturntsAndDishesController,
   allChefsWithResturntsAndDishesController,
+  setChefOfWeekController,
+  getChefOfWeekController,
 } from "../../../../controllers/apiControllers/v1/chefsController";
 
 import { middlewareCheckChefExistControler } from "../../../../middlewares/middleware";
@@ -305,6 +307,18 @@ router.get(
 router.get("/all/chefWithRestAndDish", async (req: Request, res: Response) => {
   console.log("stam");
   await allChefsWithResturntsAndDishesController(req, res);
+});
+
+router.get(
+  "/set/ChefOfWeek/:id",
+  middlewareCheckChefExistControler,
+  async (req: Request, res: Response) => {
+    await setChefOfWeekController(req, res);
+  }
+);
+
+router.get("/get/chefOfWeek", async (req: Request, res: Response) => {
+  await getChefOfWeekController(req, res);
 });
 
 module.exports = router;
