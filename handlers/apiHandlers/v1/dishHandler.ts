@@ -81,3 +81,9 @@ export async function fullDeleteDishById(id: mongoose.Types.ObjectId) {
 export async function getDishesRejexInName(regex: RegExp) {
   return await Dish.find({ name: regex });
 }
+
+export async function getDishesContainIngredients(ingredient: string) {
+  return await Dish.find({
+    Ingredients: { $elemMatch: { $regex: new RegExp(ingredient, "i") } },
+  }).select("name");
+}

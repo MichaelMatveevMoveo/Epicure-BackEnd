@@ -7,6 +7,7 @@ import {
   changeDish,
   changeStatus,
   fullDeleteDishById,
+  getDishesContainIngredients,
 } from "../../../handlers/apiHandlers/v1/dishHandler";
 
 export async function getDishesController(req: Request, res: Response) {
@@ -82,7 +83,7 @@ export async function deleteDishByIdController(req: Request, res: Response) {
       new mongoose.Types.ObjectId(req.params.id),
       false
     );
-    if (dish == null) return res.status(404).send("the chef not found");
+    // if (dish == null) return res.status(404).send("the dish not found");
     return res.json(dish);
   } catch (error) {
     return res.status(500).send(error);
@@ -99,6 +100,17 @@ export async function fullDeleteDishByIdController(
     );
     if (dish == null) return res.status(404).send("the chef not found");
     return res.json(dish);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getDishesContainIngredientsController(
+  req: Request,
+  res: Response
+) {
+  try {
+    return res.json(await getDishesContainIngredients(req.params.ingredient));
   } catch (error) {
     return res.status(500).send(error);
   }

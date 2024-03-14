@@ -8,6 +8,7 @@ import {
   changeDishController,
   deleteDishByIdController,
   recoverDishByIdController,
+  getDishesContainIngredientsController,
 } from "../../../../controllers/apiControllers/v1/dishController";
 
 /**
@@ -191,5 +192,12 @@ router.get("/recover/:id", async (req: Request, res: Response) => {
 router.delete("/:id", async (req: Request, res: Response) => {
   await deleteDishByIdController(req, res);
 });
+
+router.get(
+  "/getname/containingredient/:ingredient",
+  async (req: Request, res: Response) => {
+    await getDishesContainIngredientsController(req, res);
+  }
+);
 
 module.exports = router;
