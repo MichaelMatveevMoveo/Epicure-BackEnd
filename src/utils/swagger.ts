@@ -20,7 +20,7 @@ const options: swaggerJsdoc.Options = {
     },
   ],
 
-  apis: ["routes/**/*.ts", "mongoDB/models/*.ts"],
+  apis: ["src/routes/**/*.ts", "src/mongoDB/models/*.ts"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
