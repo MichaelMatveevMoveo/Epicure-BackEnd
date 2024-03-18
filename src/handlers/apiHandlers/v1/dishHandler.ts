@@ -87,3 +87,11 @@ export async function getDishesContainIngredients(ingredient: string) {
     Ingredients: { $elemMatch: { $regex: new RegExp(ingredient, "i") } },
   }).select("name");
 }
+
+export async function getCollectionSize() {
+  return await Dish.countDocuments({});
+}
+
+export async function getPartOfItems(offset: number, limit: number) {
+  return await Dish.find({}).skip(offset).limit(limit);
+}

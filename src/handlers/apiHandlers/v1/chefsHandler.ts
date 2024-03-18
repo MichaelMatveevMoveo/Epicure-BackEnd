@@ -191,3 +191,11 @@ export async function setChefOfWeek(chefId: string) {
 export async function getChefOfWeek() {
   return await Chef.findOne({ isCeffOfWeek: true });
 }
+
+export async function getCollectionSize() {
+  return await Chef.countDocuments({});
+}
+
+export async function getPartOfItems(offset: number, limit: number) {
+  return await Chef.find({}).skip(offset).limit(limit);
+}

@@ -12,6 +12,8 @@ import {
   getpopularRestaurantsController,
   getpopularRestaurantsNameAndChefController,
   getSignatureDishAllController,
+  getCollectionSizeController,
+  getPartOfItemsController,
 } from "../../../../controllers/apiControllers/v1/restaurantsController";
 
 /**
@@ -346,4 +348,15 @@ router.get(
 router.get("/getSignatureDish/all", async (req: Request, res: Response) => {
   await getSignatureDishAllController(req, res);
 });
+
+router.get("/collection/size", async (req: Request, res: Response) => {
+  await getCollectionSizeController(req, res);
+});
+
+router.get(
+  "/getPartOfItems/:offset/:limit",
+  async (req: Request, res: Response) => {
+    await getPartOfItemsController(req, res);
+  }
+);
 module.exports = router;

@@ -128,3 +128,11 @@ export async function getSignatureDishAll() {
     },
   ]);
 }
+
+export async function getCollectionSize() {
+  return await Restaurant.countDocuments({});
+}
+
+export async function getPartOfItems(offset: number, limit: number) {
+  return await Restaurant.find({}).skip(offset).limit(limit);
+}

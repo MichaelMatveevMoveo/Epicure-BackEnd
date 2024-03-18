@@ -12,6 +12,8 @@ import {
   getpopularRestaurants,
   getpopularRestaurantsNameAndChef,
   getSignatureDishAll,
+  getCollectionSize,
+  getPartOfItems,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
 
@@ -171,6 +173,27 @@ export async function getSignatureDishAllController(
 ) {
   try {
     return res.json(await getSignatureDishAll());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getCollectionSizeController(req: Request, res: Response) {
+  try {
+    return res.json(await getCollectionSize());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getPartOfItemsController(req: Request, res: Response) {
+  try {
+    return res.json(
+      await getPartOfItems(
+        parseInt(req.params.offset),
+        parseInt(req.params.limit)
+      )
+    );
   } catch (error) {
     return res.status(500).send(error);
   }

@@ -8,6 +8,8 @@ import {
   changeStatus,
   fullDeleteDishById,
   getDishesContainIngredients,
+  getCollectionSize,
+  getPartOfItems,
 } from "../../../handlers/apiHandlers/v1/dishHandler";
 
 export async function getDishesController(req: Request, res: Response) {
@@ -111,6 +113,27 @@ export async function getDishesContainIngredientsController(
 ) {
   try {
     return res.json(await getDishesContainIngredients(req.params.ingredient));
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getCollectionSizeController(req: Request, res: Response) {
+  try {
+    return res.json(await getCollectionSize());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getPartOfItemsController(req: Request, res: Response) {
+  try {
+    return res.json(
+      await getPartOfItems(
+        parseInt(req.params.offset),
+        parseInt(req.params.limit)
+      )
+    );
   } catch (error) {
     return res.status(500).send(error);
   }

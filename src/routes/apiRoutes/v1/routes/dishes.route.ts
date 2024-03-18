@@ -9,6 +9,8 @@ import {
   deleteDishByIdController,
   recoverDishByIdController,
   getDishesContainIngredientsController,
+  getCollectionSizeController,
+  getPartOfItemsController,
 } from "../../../../controllers/apiControllers/v1/dishController";
 
 /**
@@ -197,6 +199,16 @@ router.get(
   "/getname/containingredient/:ingredient",
   async (req: Request, res: Response) => {
     await getDishesContainIngredientsController(req, res);
+  }
+);
+router.get("/collection/size", async (req: Request, res: Response) => {
+  await getCollectionSizeController(req, res);
+});
+
+router.get(
+  "/getPartOfItems/:offset/:limit",
+  async (req: Request, res: Response) => {
+    await getPartOfItemsController(req, res);
   }
 );
 
