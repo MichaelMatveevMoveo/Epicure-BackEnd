@@ -136,3 +136,38 @@ export async function getCollectionSize() {
 export async function getPartOfItems(offset: number, limit: number) {
   return await Restaurant.find({}).skip(offset).limit(limit);
 }
+
+export async function getRestaurantsWithChefNameAndsignatureDishName() {
+  return await Restaurant.aggregate([
+    {
+      $lookup: {
+        from: "chefs",
+        localField: "chef",
+        foreignField: "_id",
+        as: "chef",
+      },
+    },
+    {
+      $addFields: {
+        chef: {
+          $arrayElemAt: ["$chef.name", 0],
+        },
+      },
+    },
+    {
+      $lookup: {
+        from: "dishes",
+        localField: "signatureDishId",
+        foreignField: "_id",
+        as: "signatureDishId",
+      },
+    },
+    {
+      $addFields: {
+        signatureDishId: {
+          $arrayElemAt: ["$signatureDishId.name", 0],
+        },
+      },
+    },
+  ]);
+}

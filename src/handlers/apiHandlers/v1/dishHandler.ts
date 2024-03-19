@@ -95,3 +95,23 @@ export async function getCollectionSize() {
 export async function getPartOfItems(offset: number, limit: number) {
   return await Dish.find({}).skip(offset).limit(limit);
 }
+
+export async function getDishesWithRestaurantName() {
+  return await Dish.aggregate([
+    {
+      $lookup: {
+        from: "restaurants",
+        localField: "restaurant",
+        foreignField: "_id",
+        as: "restaurant",
+      },
+    },
+    {
+      $addFields: {
+        restaurant: {
+          $arrayElemAt: ["$restaurant.name", 0],
+        },
+      },
+    },
+  ]);
+}

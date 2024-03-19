@@ -14,6 +14,7 @@ import {
   getSignatureDishAllController,
   getCollectionSizeController,
   getPartOfItemsController,
+  getRestaurantsWithChefNameAndsignatureDishNameController,
 } from "../../../../controllers/apiControllers/v1/restaurantsController";
 
 /**
@@ -39,6 +40,13 @@ import {
 router.get("/", async (req: Request, res: Response) => {
   await getRestaurantsController(req, res);
 });
+
+router.get(
+  "/chefNameAndsignatureDishName",
+  async (req: Request, res: Response) => {
+    await getRestaurantsWithChefNameAndsignatureDishNameController(req, res);
+  }
+);
 
 /**
  * @openapi

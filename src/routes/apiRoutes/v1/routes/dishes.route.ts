@@ -11,6 +11,7 @@ import {
   getDishesContainIngredientsController,
   getCollectionSizeController,
   getPartOfItemsController,
+  getDishesWithRestaurantNameController,
 } from "../../../../controllers/apiControllers/v1/dishController";
 
 /**
@@ -37,6 +38,9 @@ router.get("/", async (req: Request, res: Response) => {
   await getDishesController(req, res);
 });
 
+router.get("/dishesWithRestaurantName", async (req: Request, res: Response) => {
+  await getDishesWithRestaurantNameController(req, res);
+});
 /**
  * @openapi
  * /api/v1/dishes/{id}:

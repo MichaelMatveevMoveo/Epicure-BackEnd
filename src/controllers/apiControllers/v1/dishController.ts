@@ -10,6 +10,7 @@ import {
   getDishesContainIngredients,
   getCollectionSize,
   getPartOfItems,
+  getDishesWithRestaurantName,
 } from "../../../handlers/apiHandlers/v1/dishHandler";
 
 export async function getDishesController(req: Request, res: Response) {
@@ -134,6 +135,17 @@ export async function getPartOfItemsController(req: Request, res: Response) {
         parseInt(req.params.limit)
       )
     );
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+
+export async function getDishesWithRestaurantNameController(
+  req: Request,
+  res: Response
+) {
+  try {
+    return res.json(await getDishesWithRestaurantName());
   } catch (error) {
     return res.status(500).send(error);
   }
