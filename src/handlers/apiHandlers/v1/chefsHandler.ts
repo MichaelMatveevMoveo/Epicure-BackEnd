@@ -63,7 +63,6 @@ export async function getChefWithResturants(id: string) {
   const chefWithRestaurant = await Chef.findOne({ _id: id }).populate(
     "restaurants"
   );
-  console.log(chefWithRestaurant);
   return chefWithRestaurant;
 }
 

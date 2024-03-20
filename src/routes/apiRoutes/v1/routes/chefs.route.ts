@@ -307,7 +307,6 @@ router.get(
  */
 
 router.get("/all/chefWithRestAndDish", async (req: Request, res: Response) => {
-  console.log("stam");
   await allChefsWithResturntsAndDishesController(req, res);
 });
 

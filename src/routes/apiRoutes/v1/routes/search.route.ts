@@ -33,7 +33,6 @@ const router = exppres.Router();
  */
 
 router.get("/nameStartWith/:start", async (req: Request, res: Response) => {
-  console.log(req.params.start);
   await getChefsRestAndDishStartWithController(req, res);
 });
 
