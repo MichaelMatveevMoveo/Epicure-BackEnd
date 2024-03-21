@@ -12,6 +12,7 @@ import {
   getPartOfItems,
   getDishesWithRestaurantName,
 } from "../../../handlers/apiHandlers/v1/dishHandler";
+import { checkImageCorrect } from "../../../handlers/apiHandlers/v1/cloudHandler";
 
 export async function getDishesController(req: Request, res: Response) {
   try {
@@ -34,6 +35,15 @@ export async function getDishByIdController(req: Request, res: Response) {
 
 export async function addDishController(req: Request, res: Response) {
   try {
+    if (
+      !(await checkImageCorrect(
+        req.body.image,
+        req.body.version,
+        req.body.signature
+      ))
+    ) {
+      return res.status(400).send("bad image upload data");
+    }
     const dish = await addDish(
       req.body.name,
       parseInt(req.body.price),

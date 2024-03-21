@@ -17,6 +17,7 @@ import {
   getRestaurantsWithChefNameAndsignatureDishName,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
+import { checkImageCorrect } from "../../../handlers/apiHandlers/v1/cloudHandler";
 
 export async function getRestaurantsController(req: Request, res: Response) {
   try {
@@ -41,6 +42,15 @@ export async function getRestaurantByIdController(req: Request, res: Response) {
 
 export async function addRestaurantController(req: Request, res: Response) {
   try {
+    if (
+      !(await checkImageCorrect(
+        req.body.image,
+        req.body.version,
+        req.body.signature
+      ))
+    ) {
+      return res.status(400).send("bad image upload data");
+    }
     const restaurant = await addRestaurant(
       req.body.name,
       req.body.stars,
