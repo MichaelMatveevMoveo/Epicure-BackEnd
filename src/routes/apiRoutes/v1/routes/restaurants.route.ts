@@ -42,7 +42,7 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 router.get(
-  "/chefNameAndsignatureDishName",
+  "/chefNameAndsignatureDishName/:offset/:limit",
   async (req: Request, res: Response) => {
     await getRestaurantsWithChefNameAndsignatureDishNameController(req, res);
   }

@@ -96,8 +96,17 @@ export async function getPartOfItems(offset: number, limit: number) {
   return await Dish.find({}).skip(offset).limit(limit);
 }
 
-export async function getDishesWithRestaurantName() {
+export async function getDishesWithRestaurantName(
+  offset: number,
+  limit: number
+) {
   return await Dish.aggregate([
+    {
+      $skip: offset,
+    },
+    {
+      $limit: limit,
+    },
     {
       $lookup: {
         from: "restaurants",

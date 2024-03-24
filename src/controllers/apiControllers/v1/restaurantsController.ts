@@ -216,7 +216,12 @@ export async function getRestaurantsWithChefNameAndsignatureDishNameController(
   res: Response
 ) {
   try {
-    return res.json(await getRestaurantsWithChefNameAndsignatureDishName());
+    return res.json(
+      await getRestaurantsWithChefNameAndsignatureDishName(
+        parseInt(req.params.offset),
+        parseInt(req.params.limit)
+      )
+    );
   } catch (error) {
     return res.status(500).send(error);
   }

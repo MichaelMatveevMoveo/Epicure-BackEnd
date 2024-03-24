@@ -156,7 +156,12 @@ export async function getDishesWithRestaurantNameController(
   res: Response
 ) {
   try {
-    return res.json(await getDishesWithRestaurantName());
+    return res.json(
+      await getDishesWithRestaurantName(
+        parseInt(req.params.offset),
+        parseInt(req.params.limit)
+      )
+    );
   } catch (error) {
     return res.status(500).send(error);
   }

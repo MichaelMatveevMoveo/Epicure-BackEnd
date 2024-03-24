@@ -39,9 +39,12 @@ router.get("/", async (req: Request, res: Response) => {
   await getDishesController(req, res);
 });
 
-router.get("/dishesWithRestaurantName", async (req: Request, res: Response) => {
-  await getDishesWithRestaurantNameController(req, res);
-});
+router.get(
+  "/dishesWithRestaurantName/:offset/:limit",
+  async (req: Request, res: Response) => {
+    await getDishesWithRestaurantNameController(req, res);
+  }
+);
 /**
  * @openapi
  * /api/v1/dishes/{id}:

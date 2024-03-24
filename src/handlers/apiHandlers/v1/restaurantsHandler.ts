@@ -141,8 +141,17 @@ export async function getPartOfItems(offset: number, limit: number) {
   return await Restaurant.find({}).skip(offset).limit(limit);
 }
 
-export async function getRestaurantsWithChefNameAndsignatureDishName() {
+export async function getRestaurantsWithChefNameAndsignatureDishName(
+  offset: number,
+  limit: number
+) {
   return await Restaurant.aggregate([
+    {
+      $skip: offset,
+    },
+    {
+      $limit: limit,
+    },
     {
       $lookup: {
         from: "chefs",
