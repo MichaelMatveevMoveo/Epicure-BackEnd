@@ -12,6 +12,7 @@ import {
   getCollectionSizeController,
   getPartOfItemsController,
   getDishesWithRestaurantNameController,
+  getDishesForRestaurantController,
 } from "../../../../controllers/apiControllers/v1/dishController";
 
 /**
@@ -216,4 +217,7 @@ router.get(
   }
 );
 
+router.get("/forRestaurant/:restId", async (req: Request, res: Response) => {
+  await getDishesForRestaurantController(req, res);
+});
 module.exports = router;

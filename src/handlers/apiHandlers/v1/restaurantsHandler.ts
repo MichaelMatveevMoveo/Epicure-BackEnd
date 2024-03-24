@@ -34,7 +34,8 @@ export async function changeRestaurant(
   name: string,
   stars: number,
   image: string,
-  chef: mongoose.Types.ObjectId
+  chef: mongoose.Types.ObjectId,
+  signatureDishId: mongoose.Types.ObjectId
 ) {
   const restaurant = await getRestaurantById(id);
 
@@ -44,6 +45,9 @@ export async function changeRestaurant(
   restaurant.stars = stars;
   restaurant.image = image;
   restaurant.chef = chef;
+  if (signatureDishId) {
+    restaurant.signatureDishId = signatureDishId;
+  }
 
   const updatedRestaurant = await restaurant.save();
   return updatedRestaurant;

@@ -115,3 +115,7 @@ export async function getDishesWithRestaurantName() {
     },
   ]);
 }
+
+export async function getDishesForRestaurant(restId: string) {
+  return await Dish.find({ restaurant: new mongoose.Types.ObjectId(restId) });
+}

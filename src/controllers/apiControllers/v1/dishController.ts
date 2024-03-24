@@ -11,6 +11,7 @@ import {
   getCollectionSize,
   getPartOfItems,
   getDishesWithRestaurantName,
+  getDishesForRestaurant,
 } from "../../../handlers/apiHandlers/v1/dishHandler";
 import { checkImageCorrect } from "../../../handlers/apiHandlers/v1/cloudHandler";
 
@@ -156,6 +157,18 @@ export async function getDishesWithRestaurantNameController(
 ) {
   try {
     return res.json(await getDishesWithRestaurantName());
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+}
+getDishesForRestaurantController;
+
+export async function getDishesForRestaurantController(
+  req: Request,
+  res: Response
+) {
+  try {
+    return res.json(await getDishesForRestaurant(req.params.restId));
   } catch (error) {
     return res.status(500).send(error);
   }

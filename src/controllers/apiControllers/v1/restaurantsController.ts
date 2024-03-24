@@ -70,7 +70,8 @@ export async function changeRestaurantController(req: Request, res: Response) {
       req.body.name,
       req.body.stars,
       req.body.image,
-      req.body.chef
+      req.body.chef,
+      req.body.signatureDishId
     );
     if (restaurant == null) return res.status(404).send("the chef not found");
     return res.json(restaurant);
