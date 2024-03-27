@@ -1,6 +1,10 @@
 import { v2 as cloudinary } from "cloudinary";
 
 const api_secret = process.env.CLOUDINARYSECRET || "";
+
+export function getUrlForImage(image: string) {
+  return `https://res.cloudinary.com/${process.env.CLOUDNAME}/image/upload/${image}.jpg`;
+}
 export async function getSignatureFrom() {
   const timestamp = Math.round(new Date().getTime() / 1000);
   const signature = cloudinary.utils.api_sign_request(

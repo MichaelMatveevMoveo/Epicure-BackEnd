@@ -19,7 +19,10 @@ import {
   getCollectionSize,
   getPartOfItems,
 } from "../../../handlers/apiHandlers/v1/chefsHandler";
-import { checkImageCorrect } from "../../../handlers/apiHandlers/v1/cloudHandler";
+import {
+  checkImageCorrect,
+  getUrlForImage,
+} from "../../../handlers/apiHandlers/v1/cloudHandler";
 
 export async function getChefsController(req: Request, res: Response) {
   try {
@@ -53,7 +56,7 @@ export async function addChefController(req: Request, res: Response) {
     }
     const chef = await addChef(
       req.body.name,
-      req.body.image,
+      getUrlForImage(req.body.image),
       req.body.description
     );
 
@@ -68,7 +71,7 @@ export async function changeChefController(req: Request, res: Response) {
     const chef = await changeExistChef({
       id: req.params.id,
       name: req.body.name,
-      image: req.body.image,
+      image: getUrlForImage(req.body.image),
       description: req.body.description,
     });
     if (chef == null) return res.status(404).send("the chef not found");

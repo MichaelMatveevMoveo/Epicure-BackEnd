@@ -4,7 +4,6 @@ import cors from "cors";
 
 import { swaggerDocs } from "./utils/swagger";
 import cookieParser from "cookie-parser";
-import { middlewareCheckTokenJWT } from "./middlewares/authorization.middleware";
 
 const app = express();
 const mongoConnectdb = require("./mongoDB/mongoConnect");
@@ -24,8 +23,6 @@ mongoConnectdb();
 app.use(express.json());
 
 app.use(cookieParser());
-
-app.use(middlewareCheckTokenJWT);
 
 app.use("/api", apiRouter);
 

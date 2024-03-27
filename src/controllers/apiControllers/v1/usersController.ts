@@ -22,9 +22,9 @@ export async function loginController(req: Request, res: Response) {
     const ans = await login(req.body.username, req.body.password);
     if (ans) {
       res.cookie("token", ans, { maxAge: 900000 });
-      res.send("connected");
+      res.send({ status: "connected" });
     } else {
-      res.status(401).send("bad password");
+      res.status(401).send({ status: "bad password" });
     }
   } catch (error) {
     res.status(500).send(error);

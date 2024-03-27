@@ -33,17 +33,18 @@ export async function changeRestaurant(
   id: mongoose.Types.ObjectId,
   name: string,
   stars: number,
-  image: string,
   chef: mongoose.Types.ObjectId,
-  signatureDishId: mongoose.Types.ObjectId
+  signatureDishId: mongoose.Types.ObjectId,
+  image?: string
 ) {
   const restaurant = await getRestaurantById(id);
 
   if (restaurant == null) return null;
-
   restaurant.name = name;
   restaurant.stars = stars;
-  restaurant.image = image;
+  if (image) {
+    restaurant.image = image;
+  }
   restaurant.chef = chef;
   if (signatureDishId) {
     restaurant.signatureDishId = signatureDishId;

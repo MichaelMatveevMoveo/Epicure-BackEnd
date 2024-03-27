@@ -6,7 +6,10 @@ const restaurantsRouter = require("./routes/restaurants.route");
 const searchRouter = require("./routes/Search.route");
 const cloudRouter = require("./routes/cloud.route");
 const usersRouter = require("./routes/users.route");
+const adminRouter = require("./adminRoutes/admin.route");
 const router = express.Router();
+
+router.use("/admin", adminRouter);
 
 router.use("/chefs", chefsRouter);
 

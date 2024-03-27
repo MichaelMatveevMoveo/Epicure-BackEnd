@@ -17,7 +17,10 @@ import {
   getRestaurantsWithChefNameAndsignatureDishName,
 } from "../../../handlers/apiHandlers/v1/restaurantsHandler";
 import mongoose from "mongoose";
-import { checkImageCorrect } from "../../../handlers/apiHandlers/v1/cloudHandler";
+import {
+  checkImageCorrect,
+  getUrlForImage,
+} from "../../../handlers/apiHandlers/v1/cloudHandler";
 
 export async function getRestaurantsController(req: Request, res: Response) {
   try {
@@ -54,7 +57,7 @@ export async function addRestaurantController(req: Request, res: Response) {
     const restaurant = await addRestaurant(
       req.body.name,
       req.body.stars,
-      req.body.image,
+      getUrlForImage(req.body.image),
       req.body.chef
     );
     return res.json(restaurant);
@@ -69,9 +72,9 @@ export async function changeRestaurantController(req: Request, res: Response) {
       new mongoose.Types.ObjectId(req.params.id),
       req.body.name,
       req.body.stars,
-      req.body.image,
       req.body.chef,
-      req.body.signatureDishId
+      req.body.signatureDishId,
+      req.body.image ? getUrlForImage(req.body.image) : undefined
     );
     if (restaurant == null) return res.status(404).send("the chef not found");
     return res.json(restaurant);

@@ -13,7 +13,10 @@ import {
   getDishesWithRestaurantName,
   getDishesForRestaurant,
 } from "../../../handlers/apiHandlers/v1/dishHandler";
-import { checkImageCorrect } from "../../../handlers/apiHandlers/v1/cloudHandler";
+import {
+  checkImageCorrect,
+  getUrlForImage,
+} from "../../../handlers/apiHandlers/v1/cloudHandler";
 
 export async function getDishesController(req: Request, res: Response) {
   try {
@@ -48,7 +51,7 @@ export async function addDishController(req: Request, res: Response) {
     const dish = await addDish(
       req.body.name,
       parseInt(req.body.price),
-      req.body.image,
+      getUrlForImage(req.body.image),
       req.body.Ingredients,
       req.body.tags,
       req.body.restaurant
@@ -66,7 +69,7 @@ export async function changeDishController(req: Request, res: Response) {
       new mongoose.Types.ObjectId(req.params.id),
       req.body.name,
       parseInt(req.body.price),
-      req.body.image,
+      getUrlForImage(req.body.image),
       req.body.Ingredients,
       req.body.tags,
       req.body.restaurant

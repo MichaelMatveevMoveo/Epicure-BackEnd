@@ -9,11 +9,10 @@ export async function addUser(
   mail: string,
   role: string
 ) {
-  const decryptPassword = decryptDataForge(password);
   const user = new User({
     name: name,
     username: username,
-    password: decryptPassword,
+    password: password,
     mail: mail,
     role: role,
   });
