@@ -14,6 +14,7 @@ import {
   getDishesWithRestaurantNameController,
   getDishesForRestaurantController,
 } from "../../../../controllers/apiControllers/v1/dishController";
+import { middlewareCheckTokenJWT } from "../../../../middlewares/authorization.middleware";
 
 /**
  * @openapi
@@ -34,7 +35,6 @@ import {
  *      500:
  *        description: Failed to process the query
  */
-
 router.get("/", async (req: Request, res: Response) => {
   await getDishesController(req, res);
 });

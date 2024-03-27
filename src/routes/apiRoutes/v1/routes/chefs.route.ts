@@ -18,6 +18,7 @@ import {
 } from "../../../../controllers/apiControllers/v1/chefsController";
 
 import { middlewareCheckChefExistControler } from "../../../../middlewares/middleware";
+import { middlewareCheckTokenJWT } from "../../../../middlewares/authorization.middleware";
 /**
  * @openapi
  * /api/v1/chefs:
@@ -37,7 +38,6 @@ import { middlewareCheckChefExistControler } from "../../../../middlewares/middl
  *      500:
  *        description: Failed to process the query
  */
-
 router.get("/", async (req: Request, res: Response) => {
   await getChefsController(req, res);
 });
