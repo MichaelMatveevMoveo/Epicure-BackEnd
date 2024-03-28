@@ -1,0 +1,40 @@
+{
+  "apps": [
+    {
+      "name": "Epicure",
+
+      "script": "npm",
+      "args": "start",
+
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ],
+
+  "deploy": {
+    "staging": {
+      "key": "~/Desktop/ssh/backend/keys/Epicture-Server-michael-key-pair.pem",
+
+      "user": "ec2-user",
+
+      "host": ["ec2-16-171-41-69.eu-north-1.compute.amazonaws.com"],
+
+      "ref": "origin/development",
+
+      "repo": "git@github.com:MichaelMatveevMoveo/Epicure-BackEnd.git",
+
+      "path": "/home/ec2-user/Epicure/Server",
+
+      "ssh_options": "StrictHostKeyChecking=no",
+
+      "post-deploy": "mkdir -p logs && npm i && pm2 reload ecosystem.json --env staging",
+
+      "pre-deploy-local": "echo 'Deploying code to servers'",
+
+      "env": {
+        "NODE_ENV": "staging"
+      }
+    }
+  }
+}
