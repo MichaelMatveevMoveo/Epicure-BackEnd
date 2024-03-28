@@ -3,7 +3,7 @@ import express, { Request, Response } from "express";
 const chefsRouter = require("./routes/chefs.route");
 const dishesRouter = require("./routes/dishes.route");
 const restaurantsRouter = require("./routes/restaurants.route");
-const searchRouter = require("./routes/Search.route");
+const searchRouter = require("./routes/search.route");
 const cloudRouter = require("./routes/cloud.route");
 const usersRouter = require("./routes/users.route");
 const adminRouter = require("./adminRoutes/admin.route");
